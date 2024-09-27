@@ -18,6 +18,8 @@ const menues = menuList.map((menu) => {
   // Crear un elemento <li> para cada menú
   const li = document.createElement("li");
 
+  
+
   // Crear un elemento <a> para el enlace del menú
   const a = document.createElement("a");
   a.href = menu.link; // Establecer el enlace del menú
@@ -184,7 +186,38 @@ export function navbar(session = null) {
     logoutButton.textContent = "Logout";
 
     logoutButton.addEventListener("click", () => {
-      // ! HACER EL LOGOUT DEL USUARIO Y REDIRIGIR A LA PÁGINA DE LOGIN
+      window.location.href = "/pages/login.html";
+
+      
+      fetch("http://localhost:4321/auth/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({}),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            return null;
+          }
+        })
+        .then((data) => {
+          if (data) { 
+            console.log(data);
+          } else {
+            console.log("Logout failed");
+          }
+        })
+        .catch((error) => {
+          console.error(error); 
+          }
+        );
+
+
+  
+    
     });
 
     menuDiv.appendChild(logoutButton);
