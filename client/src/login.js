@@ -5,13 +5,7 @@ const $form = document.getElementById("login-form");
 
 // Añadir un evento de submit al formulario
 $form.addEventListener("submit", async (e) => {
-  addEventListener("submit", async (e) => {
-    // Crear un objeto FormData con los datos del formulario
-
-   
-
-    const formData = new FormData($form);
-  });
+  addEventListener("submit", async (e) => {});
 
   e.preventDefault();
 
@@ -21,7 +15,10 @@ $form.addEventListener("submit", async (e) => {
   // Convertir el objeto FormData a un objeto plano
   const entries = Object.fromEntries(formData.entries());
 
+  console.log(entries);
+
   // Realizar una solicitud POST a la API de inicio de sesión
+
   fetch("http://localhost:4321/auth/sign-in", {
     method: "POST",
     headers: {
@@ -34,15 +31,13 @@ $form.addEventListener("submit", async (e) => {
 
       // ! REDIRIGIR AL USUARIO A LA PÁGINA PRINCIPAL
     } else if (response.status === 401) {
-    
+      alert("Credenciales incorrectas");
+    } else {
+      alert("Error al iniciar sesión");
+      // ! MOSTRAR UN MENSAJE DE ERROR AL USUARIO
+
 
       
-
-
-    } else {
-
-
-      // ! MOSTRAR UN MENSAJE DE ERROR AL USUARIO
     }
   });
 });

@@ -136,6 +136,14 @@ export const services = (session) => {
         const coffe = service.coffee;
 
         // ! IMPLEMENTAR LÓGICA PARA CREAR UNA ORDEN
+
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Order created",
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+        }
       });
     });
   });
